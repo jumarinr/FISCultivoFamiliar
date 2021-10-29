@@ -6,19 +6,19 @@
 package interfaz;
 
 import javax.swing.ImageIcon;
+import java.awt.Color;
 
 /**
  *
  * @author juann
  */
 public class UI extends javax.swing.JFrame {
-    
 
     /**
      * Creates new form UI
      */
     public UI() {
-        initComponents();  
+        initComponents();
     }
 
     /**
@@ -32,41 +32,125 @@ public class UI extends javax.swing.JFrame {
 
         Cerrar = new javax.swing.JToggleButton();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        tamano_familia = new javax.swing.JComboBox<>();
+        capacidad_adquisitiva = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        tipo_semilla = new javax.swing.JLabel();
+        fertilidad = new javax.swing.JLabel();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 0, 0));
 
         Cerrar.setBackground(new java.awt.Color(255, 0, 0));
+        Cerrar.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 15)); // NOI18N
         Cerrar.setForeground(new java.awt.Color(255, 255, 255));
         Cerrar.setText("Cerrar");
         Cerrar.setBorderPainted(false);
+        Cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Cerrar.setFocusable(false);
         Cerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CerrarActionPerformed(evt);
             }
         });
 
-        jLabel1.setText("Por favor ingrese valores entre el rango de 0 y 10");
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Conozca en detalle la cantidad de terreno y que rendimiento debe tener en su hogar su cultivo \nacorde a sus necesidades y capacidades adquisitivas.\n\nPor favor ingrese: \n\n- Tamaño Familia: Valores entre 1 y 10 personas\n- Capacidad adquisitva: Valores entre 0 y 10 donde 0 es muy poca y 10 es mucha\n- Tipo de Semilla: Valores entre 0 y 10 en donde 0 es una planta pequeña y 10 una plata grande\n- Fertilidad del terreno: Valores entre 0 y 10 en donde 0 es esteril y 10 es muy fertil");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
+        jLabel2.setText("Tamaño Familia");
+
+        tamano_familia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10" }));
+        tamano_familia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tamano_familiaActionPerformed(evt);
+            }
+        });
+
+        capacidad_adquisitiva.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
+        capacidad_adquisitiva.setText("Capacidad Adquisitiva");
+
+        tipo_semilla.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
+        tipo_semilla.setText("Tipo Semilla");
+
+        fertilidad.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
+        fertilidad.setText("Fertilidad Terreno");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(Cerrar)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(450, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(135, 135, 135))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(tipo_semilla, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField3)
+                            .addComponent(tamano_familia, 0, 69, Short.MAX_VALUE))
+                        .addGap(140, 140, 140)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(capacidad_adquisitiva)
+                            .addComponent(fertilidad))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
-                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel2)
+                        .addComponent(tamano_familia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(capacidad_adquisitiva)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fertilidad)
+                        .addComponent(tipo_semilla)
+                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 172, Short.MAX_VALUE)
+                .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -77,6 +161,14 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_CerrarActionPerformed
+
+    private void tamano_familiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamano_familiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tamano_familiaActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,28 +196,39 @@ public class UI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(UI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 // creamos instancia de interfaz
-                UI interfaz  = new UI();
-                
+                UI interfaz = new UI();
+
                 // asignamos propiedades del jframe
                 interfaz.setVisible(true);
                 interfaz.setLocationRelativeTo(null);
-                interfaz.setTitle("FIS Cultivo Familiar");
-                
+                interfaz.setTitle("Cultivo Familiar FIS");
+
                 // asignamos icono
                 ImageIcon icon = new ImageIcon(getClass().getResource("/sources/foto_2.jpg"));
                 interfaz.setIconImage(icon.getImage());
+                interfaz.getContentPane().setBackground(new Color(139, 184, 168));
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Cerrar;
+    private javax.swing.JLabel capacidad_adquisitiva;
+    private javax.swing.JLabel fertilidad;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
+    private javax.swing.JComboBox<String> tamano_familia;
+    private javax.swing.JLabel tipo_semilla;
     // End of variables declaration//GEN-END:variables
 }
