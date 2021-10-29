@@ -31,6 +31,7 @@ public class UI extends javax.swing.JFrame {
     private void initComponents() {
 
         Cerrar = new javax.swing.JToggleButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,19 +45,27 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Por favor ingrese valores entre el rango de 0 y 10");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(685, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(Cerrar)
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(450, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(407, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 380, Short.MAX_VALUE)
                 .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -100,14 +109,16 @@ public class UI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                // creamos instancia de interfaz
                 UI interfaz  = new UI();
+                
+                // asignamos propiedades del jframe
                 interfaz.setVisible(true);
                 interfaz.setLocationRelativeTo(null);
                 interfaz.setTitle("FIS Cultivo Familiar");
                 
+                // asignamos icono
                 ImageIcon icon = new ImageIcon(getClass().getResource("/sources/foto_2.jpg"));
-                
-                System.out.println(icon.getIconWidth());
                 interfaz.setIconImage(icon.getImage());
             }
         });
@@ -115,5 +126,6 @@ public class UI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Cerrar;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
