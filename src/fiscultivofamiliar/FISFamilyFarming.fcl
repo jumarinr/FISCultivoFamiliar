@@ -4,56 +4,56 @@ FUNCTION_BLOCK family_farming // Definición de bloque
 
 // Definición de las variables de entrada
 VAR_INPUT				
-        tamano_familia : REAL; RANGE := (0 .. 10);
+        tamano_familia : REAL; RANGE := (1 .. 10);
         capacidad_adquisitiva : REAL; RANGE := (0 .. 10);
-        tipo_semilla : REAL; RANGE := (0 .. 10);
-        fertilidad_terreno: REAL; RANGE := (0 .. 10);
+        altura_planta : REAL; RANGE := (0 .. 10);
+        fertilidad_suelo: REAL; RANGE := (0 .. 10);
 END_VAR
 
 // Definición de las variables de salida
 VAR_OUTPUT				
-        cantidad_terreno : REAL; RANGE := (0 .. 10);
-        rendimiendo_cultivo : REAL; RANGE := (0 .. 10);
+        cantidad_terreno : REAL; RANGE := (0 .. 1);
+        rendimiento_cultivo : REAL; RANGE := (0 .. 11000);
 END_VAR
 
 // Fuzzificación de la variable de entrada 'tamano_familia'
 FUZZIFY tamano_familia
-        TERM pequena := gauss 0 1.5; 
-        TERM mediana := gauss 5 1.5;
-        TERM grande := gauss 10 1.5;
+        TERM pequena := trape 0 0 2 4; 
+        TERM mediana := trian 3 4 6;
+        TERM grande := trape 5 7 10 10;
 END_FUZZIFY
 
 // Fuzzificación de la variable de entrada 'capacidad_adquisitiva'
 FUZZIFY capacidad_adquisitiva
-        TERM muy_pobre := gauss 0 2.5;
-        TERM pobre := gauss 10 2.5;
-        TERM clase_media := gauss 10 2.5;
-        TERM rico := gauss 10 2.5;
-        TERM muy_rico := gauss 10 2.5;
+        TERM muy_pobre := trape 0 0 1 2;
+        TERM pobre := trape 1 2 3 4;
+        TERM clase_media :=  trape 3 4 5 7;
+        TERM rico := trian 6 7 8;
+        TERM muy_rico := trape 7 8 10 10;
 END_FUZZIFY
 
-// Fuzzificación de la variable de entrada 'tipo_semilla'
-FUZZIFY tipo_semilla
-        TERM planta_muy_pequena := gauss 0 1.5;
-        TERM planta_pequena := gauss 0 1.5;
-        TERM planta_mediana := gauss 0 1.5;
-        TERM planta_grande := gauss 5 1.5;
-        TERM planta_muy_grande := gauss 10 1.5;
+// Fuzzificación de la variable de entrada 'altura_planta'
+FUZZIFY altura_planta
+        TERM muy_pequena := sigm -10 1;
+        TERM pequena := gauss  1 0.4;
+        TERM mediana := gauss  3 0.7;
+        TERM grande := gauss 6.24 0.6;
+        TERM muy_grande := sigm 4.08 7.6294743130227;
 END_FUZZIFY
 
-// Fuzzificación de la variable de entrada 'fertilidad_terreno'
-FUZZIFY fertilidad_terreno
-        TERM esteril := gauss 0 1.5;
-        TERM media := gauss 5 1.5;
-        TERM fertil := gauss 5 1.5;
-        TERM muy_fertil := gauss 10 1.5;
+// Fuzzificación de la variable de entrada 'fertilidad_suelo'
+FUZZIFY fertilidad_suelo
+        TERM esteril := trape 0 0 0.5 2;
+        TERM media := trape 1 2 4 5;
+        TERM fertil := trian 4 6 8;
+        TERM muy_fertil := trape 5 7 10 10;
 END_FUZZIFY
 
 // Defuzzificación de la variable de salida 'cantidad_terreno'
 DEFUZZIFY cantidad_terreno
-        TERM pequeno := gauss 165 9.1;
-        TERM mediano := gauss 195 9.1;
-        TERM grande := gauss 225 9.1;
+        TERM pequeno := sigm -24.6 0.1308;
+        TERM mediano := gauss  0.444310633213859 0.096;
+        TERM grande := trape 0.6 0.8 1 1;
 
         METHOD : COG;		// Usa el metodo de 'Centro de Gravedad'
         DEFAULT := 0;		// Valor por defecto si ninguna regla activa el defuzzificador
@@ -61,9 +61,9 @@ END_DEFUZZIFY
 
 // Defuzzificación de la variable de salida 'rendimiento_cultivo'
 DEFUZZIFY rendimiento_cultivo
-        TERM bajo := gauss 165 9.1;
-        TERM mediano := gauss 195 9.1;
-        TERM alto := gauss 225 9.1;
+        TERM bajo := trian 0 0 200;
+        TERM mediano := trape 150 3000 4000 5000;
+        TERM alto := trape 400 5500 11000 11000;
 
         METHOD : COG;		// Usa el metodo de 'Centro de Gravedad'
         DEFAULT := 0;		// Valor por defecto si ninguna regla activa el defuzzificador
@@ -75,23 +75,51 @@ RULEBLOCK No1
         ACT : MIN;	// Usa el metodo 'min' para la activación/implicación (trunca)
         ACCU : MAX;	// Usa el 'max' para la acumulación/agregación
 
-        
-        RULE 1 : IF (tamano_familia IS pequena) AND (capacidad_adquisitiva IS muy_pobre) AND (tipo_semilla IS muy_pequena) AND (fertilidad_terreno IS esteril) THEN (cantidad_terreno IS poco) AND (rendimiento_cultivo IS bajo);
+        RULE 1 :  If (tamano_familia is grande) and (capacidad_adquisitiva is muy_pobre) and (altura_planta is mediana) and (fertilidad_suelo is esteril) 
+             then cantidad_terreno is grande, rendimiento_cultivo is bajo;
 
-        RULE 2 : IF (tamano_familia IS mediana) AND (capacidad_adquisitiva IS muy_pobre) AND (tipo_semilla IS muy_pequena) AND (fertilidad_terreno IS esteril) THEN (cantidad_terreno IS mediano) AND (rendimiento_cultivo IS bajo);
+        RULE 2: If (tamano_familia is grande) and (capacidad_adquisitiva is muy_rico) and (altura_planta is grande) and (fertilidad_suelo is esteril) 
+             then cantidad_terreno is grande, rendimiento_cultivo is mediano;
 
-        RULE 3 : IF (tamano_familia IS mediana) AND (capacidad_adquisitiva IS pobre) AND (tipo_semilla IS  pequena) AND (fertilidad_terreno IS media) THEN (cantidad_terreno IS mediano) AND (rendimiento_cultivo IS bajo);
+        RULE 3: If (tamano_familia is grande) and (capacidad_adquisitiva is rico) and (altura_planta is mediana) and (fertilidad_suelo is media) 
+             then cantidad_terreno is grande, rendimiento_cultivo is alto;
 
-        RULE 4 : IF (tamano_familia IS grande) AND (capacidad_adquisitiva IS Muy pobre) AND (tipo_semilla IS  mediana) AND (fertilidad_terreno IS esteril) THEN (cantidad_terreno IS bajo) AND (rendimiento_cultivo IS bajo);
+        RULE 4: If (tamano_familia is grande) and (capacidad_adquisitiva is muy_rico) and (altura_planta is grande) and (fertilidad_suelo is muy_fertil) 
+        then cantidad_terreno is grande, rendimiento_cultivo is alto;
 
-        RULE 5 : IF (tamano_familia IS grande) AND (capacidad_adquisitiva IS muy rica) AND (tipo_semilla IS grande) AND (fertilidad_terreno IS esteril) THEN (cantidad_terreno IS grande) AND (rendimiento_cultivo IS mediano);
+        RULE 5: If (tamano_familia is grande) and (capacidad_adquisitiva is clase_media) and (altura_planta is pequena) and (fertilidad_suelo is muy_fertil) 
+        then cantidad_terreno is grande, rendimiento_cultivo is mediano;
 
-        RULE 6 : IF (tamano_familia IS mediana) AND (capacidad_adquisitiva IS mediana) AND (tipo_semilla IS grande) AND (fertilidad_terreno IS medio) THEN (cantidad_terreno IS medio) AND (rendimiento_cultivo IS alto);
+        RULE 6: If (tamano_familia is mediana) and (capacidad_adquisitiva is muy_pobre) and (altura_planta is muy_pequena) and (fertilidad_suelo is esteril) 
+        then cantidad_terreno is mediano, rendimiento_cultivo is bajo;
 
-        RULE 7 : IF (tamano_familia IS mediana) AND (capacidad_adquisitiva IS mediana) AND (tipo_semilla IS grande) AND (fertilidad_terreno IS medio) THEN (cantidad_terreno IS medio) AND (rendimiento_cultivo IS alto);
+        RULE 7: If (tamano_familia is mediana) and (capacidad_adquisitiva is pobre) and (altura_planta is pequena) and (fertilidad_suelo is esteril) 
+        then cantidad_terreno is mediano, rendimiento_cultivo is bajo;
 
-//      RULE N : IF (var1 IS a) AND ((var2 IS b) AND ((var3 IS c) AND (var4 IS d)))
-//      THEN salida1 IS x, salida2 IS y;
+        RULE 8: If (tamano_familia is mediana) and (capacidad_adquisitiva is clase_media) and (altura_planta is grande) and (fertilidad_suelo is media) 
+        then cantidad_terreno is mediano, rendimiento_cultivo is mediano;
+
+        RULE 9: If (tamano_familia is mediana) and (capacidad_adquisitiva is muy_rico) and (altura_planta is grande) and (fertilidad_suelo is muy_fertil) 
+        then cantidad_terreno is mediano, rendimiento_cultivo is mediano;
+
+        RULE 10: If (tamano_familia is mediana) and (capacidad_adquisitiva is muy_rico) and (altura_planta is pequena) and (fertilidad_suelo is muy_fertil) 
+        then cantidad_terreno is pequeno, rendimiento_cultivo is alto;
+
+        RULE 11: If (tamano_familia is mediana) and (capacidad_adquisitiva is rico) and (altura_planta is pequena) and (fertilidad_suelo is muy_fertil) 
+        then cantidad_terreno is mediano, rendimiento_cultivo is alto;
+
+        RULE 12: If (tamano_familia is pequena) and (capacidad_adquisitiva is muy_pobre) and (altura_planta is muy_pequena) and (fertilidad_suelo is esteril) 
+        then cantidad_terreno is pequeno, rendimiento_cultivo is bajo;
+
+        RULE 13: If (tamano_familia is pequena) and (capacidad_adquisitiva is rico) and (altura_planta is grande) and (fertilidad_suelo is esteril) 
+        then cantidad_terreno is mediano, rendimiento_cultivo is bajo;
+
+        RULE 14: If (tamano_familia is pequena) and (capacidad_adquisitiva is muy_rico) and (altura_planta is mediana) and (fertilidad_suelo is fertil) 
+        then cantidad_terreno is pequeno, rendimiento_cultivo is bajo;   
+
+        RULE 15: If (tamano_familia is pequena) and (capacidad_adquisitiva is clase_media) and (altura_planta is pequena) and (fertilidad_suelo is media) 
+        then cantidad_terreno is pequeno, rendimiento_cultivo is mediano; 
+
 END_RULEBLOCK
 
 END_FUNCTION_BLOCK

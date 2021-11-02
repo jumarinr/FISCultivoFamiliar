@@ -42,18 +42,18 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="jTextField3" max="32767" attributes="0"/>
+                          <Component id="altura_planta" max="32767" attributes="0"/>
                           <Component id="tamano_familia" pref="69" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="fertilidad" alignment="1" min="-2" max="-2" attributes="0"/>
-                          <Component id="capacidad_adquisitiva" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="label" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextField2" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
-                          <Component id="jTextField1" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="fertilidad_suelo" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
+                          <Component id="capacidad_adquisitiva" alignment="1" min="-2" pref="69" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
@@ -64,7 +64,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jButton1" min="-2" pref="97" max="-2" attributes="0"/>
+                          <Component id="submit" min="-2" pref="97" max="-2" attributes="0"/>
                           <Component id="Cerrar" alignment="1" min="-2" pref="101" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -85,22 +85,22 @@
                       <Component id="tamano_familia" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="label" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="capacidad_adquisitiva" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                      <Component id="jTextField2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="fertilidad_suelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipo_semilla" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="altura_planta" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="fertilidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton1" pref="39" max="32767" attributes="0"/>
+              <Component id="submit" pref="39" max="32767" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="227" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -150,7 +150,7 @@
               <Font name="Microsoft YaHei UI" size="12" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Conozca en detalle la cantidad de terreno y que rendimiento debe tener en su hogar su cultivo &#xa;acorde a sus necesidades y capacidades adquisitivas.&#xa;&#xa;Por favor ingrese: &#xa;&#xa;- Tama&#xf1;o Familia: Valores entre 1 y 10 personas&#xa;- Capacidad adquisitva: Valores entre 0 y 10 donde 0 es muy poca y 10 es mucha&#xa;- Tipo de Semilla: Valores entre 0 y 10 en donde 0 es una planta peque&#xf1;a y 10 una plata grande&#xa;- Fertilidad del terreno: Valores entre 0 y 10 en donde 0 es esteril y 10 es muy fertil"/>
+            <Property name="text" type="java.lang.String" value="Conozca en detalle la cantidad de terreno y que rendimiento debe tener en su hogar su cultivo &#xa;acorde a sus necesidades y capacidades adquisitivas.&#xa;&#xa;Por favor ingrese: &#xa;&#xa;- Tama&#xf1;o Familia: Valores entre 1 y 10 personas&#xa;- Capacidad adquisitva: Valores entre 0 y 10 donde 0 es muy poca y 10 es mucha&#xa;- Altura Planta (metros): Valores entre 0 y 10&#xa;- Fertilidad del terreno: Valores entre 0 y 10 en donde 0 es esteril y 10 es muy fertil"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
               <Color id="Cursor de Texto"/>
             </Property>
@@ -191,7 +191,7 @@
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JLabel" name="capacidad_adquisitiva">
+    <Component class="javax.swing.JLabel" name="label">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei UI" size="12" style="0"/>
@@ -199,14 +199,14 @@
         <Property name="text" type="java.lang.String" value="Capacidad Adquisitiva"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField1">
+    <Component class="javax.swing.JTextField" name="capacidad_adquisitiva">
     </Component>
     <Component class="javax.swing.JLabel" name="tipo_semilla">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Microsoft JhengHei UI" size="12" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Tipo Semilla"/>
+        <Property name="text" type="java.lang.String" value="Altura Planta"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="fertilidad">
@@ -217,11 +217,11 @@
         <Property name="text" type="java.lang.String" value="Fertilidad Terreno"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField2">
+    <Component class="javax.swing.JTextField" name="fertilidad_suelo">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTextField3">
+    <Component class="javax.swing.JTextField" name="altura_planta">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="altura_plantaActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
@@ -231,7 +231,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTextArea" name="jTextArea2">
+        <Component class="javax.swing.JTextArea" name="resultadoTextArea">
           <Properties>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
@@ -239,7 +239,7 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="submit">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="0" green="64" red="0" type="rgb"/>
@@ -260,7 +260,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="submitActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

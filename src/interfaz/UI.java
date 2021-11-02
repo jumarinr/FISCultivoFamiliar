@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import fiscultivofamiliar.FISFamilyFarming;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 
@@ -13,6 +14,8 @@ import java.awt.Color;
  * @author juann
  */
 public class UI extends javax.swing.JFrame {
+
+    FISFamilyFarming resultados = new FISFamilyFarming();
 
     /**
      * Creates new form UI
@@ -36,15 +39,15 @@ public class UI extends javax.swing.JFrame {
         jTextArea1 = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         tamano_familia = new javax.swing.JComboBox<>();
-        capacidad_adquisitiva = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        label = new javax.swing.JLabel();
+        capacidad_adquisitiva = new javax.swing.JTextField();
         tipo_semilla = new javax.swing.JLabel();
         fertilidad = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        fertilidad_suelo = new javax.swing.JTextField();
+        altura_planta = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
-        jButton1 = new javax.swing.JButton();
+        resultadoTextArea = new javax.swing.JTextArea();
+        submit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -66,7 +69,7 @@ public class UI extends javax.swing.JFrame {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Microsoft YaHei UI", 0, 12)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Conozca en detalle la cantidad de terreno y que rendimiento debe tener en su hogar su cultivo \nacorde a sus necesidades y capacidades adquisitivas.\n\nPor favor ingrese: \n\n- Tamaño Familia: Valores entre 1 y 10 personas\n- Capacidad adquisitva: Valores entre 0 y 10 donde 0 es muy poca y 10 es mucha\n- Tipo de Semilla: Valores entre 0 y 10 en donde 0 es una planta pequeña y 10 una plata grande\n- Fertilidad del terreno: Valores entre 0 y 10 en donde 0 es esteril y 10 es muy fertil");
+        jTextArea1.setText("Conozca en detalle la cantidad de terreno y que rendimiento debe tener en su hogar su cultivo \nacorde a sus necesidades y capacidades adquisitivas.\n\nPor favor ingrese: \n\n- Tamaño Familia: Valores entre 1 y 10 personas\n- Capacidad adquisitva: Valores entre 0 y 10 donde 0 es muy poca y 10 es mucha\n- Altura Planta (metros): Valores entre 0 y 10\n- Fertilidad del terreno: Valores entre 0 y 10 en donde 0 es esteril y 10 es muy fertil");
         jTextArea1.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane1.setViewportView(jTextArea1);
 
@@ -80,35 +83,35 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        capacidad_adquisitiva.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
-        capacidad_adquisitiva.setText("Capacidad Adquisitiva");
+        label.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
+        label.setText("Capacidad Adquisitiva");
 
         tipo_semilla.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
-        tipo_semilla.setText("Tipo Semilla");
+        tipo_semilla.setText("Altura Planta");
 
         fertilidad.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 12)); // NOI18N
         fertilidad.setText("Fertilidad Terreno");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        altura_planta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                altura_plantaActionPerformed(evt);
             }
         });
 
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        resultadoTextArea.setColumns(20);
+        resultadoTextArea.setRows(5);
+        jScrollPane2.setViewportView(resultadoTextArea);
 
-        jButton1.setBackground(new java.awt.Color(0, 100, 0));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Calcular");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setMaximumSize(new java.awt.Dimension(73, 32));
-        jButton1.setMinimumSize(new java.awt.Dimension(73, 32));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        submit.setBackground(new java.awt.Color(0, 100, 0));
+        submit.setForeground(new java.awt.Color(255, 255, 255));
+        submit.setText("Calcular");
+        submit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        submit.setFocusPainted(false);
+        submit.setMaximumSize(new java.awt.Dimension(73, 32));
+        submit.setMinimumSize(new java.awt.Dimension(73, 32));
+        submit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                submitActionPerformed(evt);
             }
         });
 
@@ -129,16 +132,16 @@ public class UI extends javax.swing.JFrame {
                                     .addComponent(jLabel2))))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField3)
+                            .addComponent(altura_planta)
                             .addComponent(tamano_familia, 0, 69, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fertilidad, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(capacidad_adquisitiva, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(label, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(fertilidad_suelo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(capacidad_adquisitiva, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -146,7 +149,7 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(submit, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
@@ -161,18 +164,18 @@ public class UI extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(tamano_familia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(capacidad_adquisitiva)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(label)
+                        .addComponent(capacidad_adquisitiva, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fertilidad_suelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(tipo_semilla)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(altura_planta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(fertilidad)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(submit, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -192,13 +195,19 @@ public class UI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamano_familiaActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void altura_plantaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altura_plantaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_altura_plantaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void submitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitActionPerformed
+        Integer tamano_familia_result = Integer.parseInt((String) tamano_familia.getSelectedItem());
+        double altura_planta_result = Double.parseDouble(altura_planta.getText().replace(",", "."));
+        double capacidad_adquisitiva_result = Double.parseDouble(capacidad_adquisitiva.getText().replace(",", "."));
+        double fertilidad_suelo_result = Double.parseDouble(fertilidad_suelo.getText().replace(",", "."));
+
+   
+        resultadoTextArea.setText(resultados.calcularFarming(tamano_familia_result, altura_planta_result, capacidad_adquisitiva_result, fertilidad_suelo_result));
+    }//GEN-LAST:event_submitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,18 +258,18 @@ public class UI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton Cerrar;
-    private javax.swing.JLabel capacidad_adquisitiva;
+    private javax.swing.JTextField altura_planta;
+    private javax.swing.JTextField capacidad_adquisitiva;
     private javax.swing.JLabel fertilidad;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField fertilidad_suelo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextArea2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JLabel label;
+    private javax.swing.JTextArea resultadoTextArea;
+    private javax.swing.JButton submit;
     private javax.swing.JComboBox<String> tamano_familia;
     private javax.swing.JLabel tipo_semilla;
     // End of variables declaration//GEN-END:variables
